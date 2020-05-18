@@ -21,6 +21,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources,
+  introspection:true,
+  playground:true,
 });
 
 const app = express();
