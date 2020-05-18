@@ -1,0 +1,106 @@
+// CREATE USER
+mutation create {
+	createUser(user: {
+    email:"laurajbarros@gmail.com"
+    name:"laura"
+    lastName:"barros"
+    profile: [
+      {
+        field: "linkedin"
+        value:"www.linkedin.com/in/laurajbarros"
+      }
+    ]
+  }) {
+      message
+    	users {
+        name
+        _id
+        profile {
+          field
+          value
+        }
+      }
+    }
+}
+
+// FIND ALL USERS
+query findAllUsers {
+  users{
+    name
+    _id
+  }
+}
+
+// UPDATE USER INFO
+mutation updateUser {
+	updateUser(user: {
+    email:"laurajbarros@gmail.com"
+    name:"lauraaaa"
+    lastName:"barros"
+  }, _id: "5ebea0279ae40a2cc5a8ec8c") {
+      message
+    	users {
+        name
+      }
+    }
+}
+// Create Job Application
+mutation create {
+	createJobApplication(application:{
+    id: 4357375
+    company: "Laura Dev Co"
+    url: "www.lauradev.com.br"
+    source: "upwork"
+    platform: "remotework.com"
+    application: [{
+      field: "github"
+      value: "www.github.com.br/laurajbarros"
+    }]
+  }, _id: "5ebeef44392e9a0b9c6b0922") {
+      message
+    	users {
+        name
+      }
+    }
+}
+
+// DELETE PROFILE
+mutation deleteUser {
+	deleteProfile(_id: "5ebea0279ae40a2cc5a8ec8c") {
+      message
+    	users {
+        name
+      }
+    }
+}
+
+
+// DELETE USER
+mutation deleteUser {
+	deleteUser(_id: "5ebea0279ae40a2cc5a8ec8c") {
+      message
+    	users {
+        name
+      }
+    }
+}
+
+
+UPDATE PROFILE:
+mutation updateProfile {
+  updateProfile(_id:"5ebef6aad38f7113901b453e",
+  profile:[
+    {
+      field:"github"
+      value:"www.github.com.br"
+    }
+  ]) {
+    users {
+      name
+      profile{
+        field
+        value
+      }
+    }
+  }
+}
