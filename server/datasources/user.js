@@ -36,13 +36,7 @@ class UserAPI extends DataSource {
 
 
   async createNewUser({user}) {
-    const newUser = {
-      email: user.email,
-      name: user.name,
-      lastName: user.lastName,
-      profile: user.profile
-    }
-    const res = await this.User.create(newUser)
+    const res = await this.User.create(user)
     return res
   }
 
@@ -89,9 +83,9 @@ class UserAPI extends DataSource {
   }
 
   async updateUser({ _id, newUser}) {
-    const { name, lastName, email} = newUser;
+    const { name, lastName} = newUser;
     await this.User.updateOne({_id:_id},{
-      $set: { name: name, lastName: lastName, email: email}
+      $set: { name: name, lastName: lastName}
     })
     const updatedUser = await this.User.findById({_id:_id});
     return updatedUser

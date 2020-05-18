@@ -6,7 +6,6 @@ const db = require('./config/keys').mongoURI;
 const UserAPI = require('./datasources/user');
 const { User } = require('./models/user');
 
-
 //######## Mongo connection ###########
 const mongoose = require('mongoose');
 mongoose.connect(db, { useNewUrlParser: true });

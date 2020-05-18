@@ -5,7 +5,6 @@ const userSchema = new Schema({
   id: String,
   name: String,
   lastName: String,
-  email: String,
   profile: {type: Array, default:[]},
   jobapplication: {type: Array, default:[]}
 });
