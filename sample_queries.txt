@@ -1,19 +1,29 @@
+############ REPLICATE TEST #############
+
 // CREATE USER
 mutation create {
 	createUser(user: {
-    email:"laurajbarros@gmail.com"
-    name:"laura"
-    lastName:"barros"
+    name:"Bill"
+    lastName:"Gates"
     profile: [
       {
-        field: "linkedin"
-        value:"www.linkedin.com/in/laurajbarros"
-      }
+        field: "email"
+        value:"bill@microsoft.com"
+      },
+			{
+        field: "title"
+        value:"CEO"
+      },
+			{
+        field: "Address"
+        value:"City: Redmond, State: WA"
+      },
     ]
   }) {
       message
     	users {
         name
+				lastName
         _id
         profile {
           field
@@ -23,72 +33,223 @@ mutation create {
     }
 }
 
-// FIND ALL USERS
-query findAllUsers {
-  users{
-    name
-    _id
-  }
-}
-
-// UPDATE USER INFO
-mutation updateUser {
-	updateUser(user: {
-    email:"laurajbarros@gmail.com"
-    name:"lauraaaa"
-    lastName:"barros"
-  }, _id: "5ebea0279ae40a2cc5a8ec8c") {
-      message
-    	users {
-        name
-      }
-    }
-}
 // Create Job Application
 mutation create {
 	createJobApplication(application:{
     id: 4357375
-    company: "Laura Dev Co"
-    url: "www.lauradev.com.br"
+    company: "Dial Work"
+    url: "www.dialwork.ai"
     source: "upwork"
     platform: "remotework.com"
-    application: [{
-      field: "github"
-      value: "www.github.com.br/laurajbarros"
-    }]
-  }, _id: "5ebeef44392e9a0b9c6b0922") {
+    application: [
+			{
+				field: "email"
+      	value: "bill@gatesfoundation.com"
+    	},
+			{
+	      field: "title"
+	      value: "Philantrophist"
+	    },
+			{
+	      field: "experience"
+	      value: "Giving away lots of money"
+	    },
+		]
+  }, _id: "") {
       message
     	users {
         name
+				lastName
+				profile {
+					field
+					value
+				}
+				jobapplication {
+					company
+					application {
+					  field
+						value
+					}
+				}
       }
     }
 }
 
-// DELETE PROFILE
-mutation deleteUser {
-	deleteProfile(_id: "5ebea0279ae40a2cc5a8ec8c") {
+############ QUERIES #############
+
+// FIND ALL USERS
+query findAllUsers {
+  users{
+    name
+		lastName
+    _id
+		profile {
+			field
+			value
+		}
+		jobapplication {
+			company
+			application {
+				field
+				value
+			}
+		}
+  }
+}
+
+// FIND A USER WITH ID:
+
+query findAUser {
+  user(_id:""){
+    name
+		lastName
+    _id
+		profile {
+			field
+			value
+		}
+		jobapplication {
+			company
+			application {
+				field
+				value
+			}
+		}
+  }
+}
+
+############ OTHER MUTATIONS #############
+
+// CREATE USER
+mutation create {
+	createUser(user: {
+    name:"Bill"
+    lastName:"Gates"
+    profile: [
+      {
+        field: "email"
+        value:"bill@microsoft.com"
+      },
+			{
+        field: "title"
+        value:"CEO"
+      },
+			{
+        field: "Address"
+        value:"City: Redmond, State: WA"
+      },
+    ]
+  }) {
       message
     	users {
         name
+				lastName
+        _id
+        profile {
+          field
+          value
+        }
       }
     }
 }
 
+// Create Job Application
+mutation create {
+	createJobApplication(application:{
+    id: 4357375
+    company: "Dial Work"
+    url: "www.dialwork.ai"
+    source: "upwork"
+    platform: "remotework.com"
+    application: [
+			{
+				field: "email"
+      	value: "bill@gatesfoundation.com"
+    	},
+			{
+	      field: "title"
+	      value: "Philantrophist"
+	    },
+			{
+	      field: "experience"
+	      value: "Giving away lots of money"
+	    },
+		]
+  }, _id: "") {
+      message
+    	users {
+        name
+				lastName
+				profile {
+					field
+					value
+				}
+				jobapplication {
+					company
+					application {
+					  field
+						value
+					}
+				}
+      }
+    }
+}
 
 // DELETE USER
 mutation deleteUser {
-	deleteUser(_id: "5ebea0279ae40a2cc5a8ec8c") {
+	deleteUser(_id: "") {
+      message
+    }
+}
+
+// UPDATE USER INFO
+mutation updateUserInfo {
+	updateUser(user: {
+    name:"lauraaaa"
+    lastName:"barros"
+  }, _id: "") {
       message
     	users {
         name
+				lastName
       }
     }
 }
 
 
-UPDATE PROFILE:
+// DELETE PROFILE
+mutation deleteUser {
+	deleteProfile(_id: "") {
+      message
+    	users {
+        name
+				lastName
+				profile {
+					field
+					value
+				}
+      }
+    }
+}
+
+// DELETE FIELD in PROFILE
+mutation deleteUser {
+	deleteFieldProfile(_id: "", field: "") {
+      message
+    	users {
+        name
+				lastName
+				profile {
+					field
+					value
+				}
+      }
+    }
+}
+
+// UPDATE PROFILE:
 mutation updateProfile {
-  updateProfile(_id:"5ebef6aad38f7113901b453e",
+  updateProfile(_id:"",
   profile:[
     {
       field:"github"
